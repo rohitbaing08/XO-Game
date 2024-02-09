@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../Widgets/block.dart';
 
 int n = 1;
@@ -187,7 +188,27 @@ class _GameUIState extends State<GameUI> {
       child: Column(
         children: [
           Container(
-            margin: const EdgeInsets.only(top: 90),
+            margin: const EdgeInsets.only(top: 20),
+            height: 60,
+            width: 400,
+            child: Center(
+              child: pressed
+                  ? pressed2
+                      ? pressed1
+                          ? Text(xwin,
+                              style: const TextStyle(
+                                  color: Colors.black, fontSize: 40))
+                          : Text(owin,
+                              style: const TextStyle(
+                                  color: Colors.black, fontSize: 40))
+                      : Text(nowin,
+                          style: const TextStyle(
+                              color: Colors.black, fontSize: 40))
+                  : const Text(''),
+            ),
+          ),
+          Container(
+            margin: const EdgeInsets.only(top: 20, bottom: 50),
             height: 360,
             width: 360,
             child: Column(children: [
@@ -340,25 +361,6 @@ class _GameUIState extends State<GameUI> {
               )
             ]),
           ),
-
-          Container(
-              margin: const EdgeInsets.only(top: 20),
-              height: 60,
-              width: 400,
-              child: Center(
-                  child: pressed
-                      ? pressed2
-                          ? pressed1
-                              ? Text(xwin,
-                                  style: const TextStyle(
-                                      color: Colors.black, fontSize: 40))
-                              : Text(owin,
-                                  style: const TextStyle(
-                                      color: Colors.black, fontSize: 40))
-                          : Text(nowin,
-                              style: const TextStyle(
-                                  color: Colors.black, fontSize: 40))
-                      : const Text(''))),
           pressed
               ? ElevatedButton(
                   onPressed: () {
@@ -371,14 +373,17 @@ class _GameUIState extends State<GameUI> {
                       disable = false;
                     });
                   },
-                  child: Container(
-                      height: 50,
-                      width: 80,
-                      child: const Center(
-                          child: Text(
+                  child: const SizedBox(
+                    height: 50,
+                    width: 120,
+                    child: Center(
+                      child: Text(
                         'Play Again',
                         style: TextStyle(fontSize: 16),
-                      ))))
+                      ),
+                    ),
+                  ),
+                )
               : Container(height: 50),
           const Divider(
             color: Colors.black,
@@ -387,20 +392,13 @@ class _GameUIState extends State<GameUI> {
             endIndent: 60,
             height: 20,
           ),
-          const Text(
-            'Score',
-            style: TextStyle(fontSize: 30),
-          ),
-          //  Divider(color: Colors.black,thickness: 1.3,indent: 100,endIndent: 100,),
-          Container(
-            height: 110,
+          SizedBox(
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: SizedBox(
-                    height: 80,
                     width: 180,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -409,10 +407,15 @@ class _GameUIState extends State<GameUI> {
                           'X',
                           style: TextStyle(fontSize: 25),
                         ),
-                        const Divider(color: Colors.black87),
+                        const Divider(
+                          color: Colors.black87,
+                          indent: 60,
+                          endIndent: 60,
+                        ),
                         Text(
                           score1.toString(),
-                          style: const TextStyle(fontSize: 25),
+                          style:
+                              const TextStyle(fontSize: 25, color: Colors.red),
                         )
                       ],
                     ),
@@ -421,15 +424,19 @@ class _GameUIState extends State<GameUI> {
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: SizedBox(
-                    height: 80,
                     width: 180,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         const Text('O', style: TextStyle(fontSize: 25)),
-                        const Divider(color: Colors.black87),
+                        const Divider(
+                          color: Colors.black87,
+                          indent: 60,
+                          endIndent: 60,
+                        ),
                         Text(score2.toString(),
-                            style: const TextStyle(fontSize: 25))
+                            style: const TextStyle(
+                                fontSize: 25, color: Colors.red))
                       ],
                     ),
                   ),
